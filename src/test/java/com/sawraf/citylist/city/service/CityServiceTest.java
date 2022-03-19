@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -73,7 +74,7 @@ class CityServiceTest {
 
     @Test
     void findByNameStartingWithShouldReturnNoCity() {
-        final String prefixToBeSearched = "Lon";
+        final String prefixToBeSearched = "LON";
 //
 //        city_1.setName("Wroclaw");
 //        city_1.setName("Krakow");
@@ -87,5 +88,25 @@ class CityServiceTest {
         final List<City> returnedCities = cityService.findByNameStartingWith(prefixToBeSearched);
         assertThat(returnedCities).isEmpty();
         verify(cityRepository).findByNameStartingWith(prefixToBeSearched);
+    }
+
+    @Test
+    void updateShouldReturnOriginalCity() {
+        final Long cityId = 1L;
+        city_1.setId(cityId);
+        city_1.setName("WROCLAW");
+        city_1.setPhotoUrl("TEST_PHOTO_URL");
+        when(cityRepository.findById(cityId)).thenReturn(Optional.of(city_1));
+        when(cityRepository.save(city_1)).thenReturn(city_1);
+
+        final City updatedCity = cityService.update(cityId, city_1);
+
+        assertThat(updatedCity.getId()).isEqualTo(city_1.getId());
+        assertThat(updatedCity.getName()).isEqualTo(city_1.getName());
+        assertThat(updatedCity.getPhotoUrl()).isEqualTo(city_1.getPhotoUrl());
+
+        verify(cityRepository).findById(cityId);
+        verify(cityRepository).save(city_1);
+
     }
 }

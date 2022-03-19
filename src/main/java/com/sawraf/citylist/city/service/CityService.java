@@ -5,6 +5,7 @@ import com.sawraf.citylist.city.repository.CityRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Service for requesting {@link com.sawraf.citylist.city.entity.City}
@@ -27,6 +28,8 @@ public class CityService {
     }
 
     public City update(Long id, City newCity) {
-
+        final Optional<City> byId = cityRepository.findById(id);
+        cityRepository.save(byId.get());
+        return byId.get();
     }
 }
