@@ -1,12 +1,13 @@
 package com.sawraf.citylist.city.controller;
 
-import com.sawraf.citylist.city.entity.City;
+import com.sawraf.citylist.city.dto.CityUpdateDTO;
 import com.sawraf.citylist.city.service.CityService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.PageRequest;
 
 import static org.mockito.Mockito.verify;
 
@@ -25,8 +26,9 @@ class CityControllerTest {
 
     @Test
     void testDelegateGetAll() {
-        cityController.getAll();
-        verify(cityService).getAll();
+        final PageRequest pageRequest = PageRequest.of(0, 8);
+        cityController.getAll(pageRequest);
+        verify(cityService).getAll(pageRequest);
     }
 
     @Test
@@ -39,8 +41,8 @@ class CityControllerTest {
     @Test
     void testDelegateUpdateCity() {
         final Long id = 1L;
-        final City city = new City();
-        cityController.updateCity(id, city);
-        verify(cityService).update(id, city);
+        final CityUpdateDTO cityUpdateDTO = new CityUpdateDTO();
+        cityController.updateCity(id, cityUpdateDTO);
+        verify(cityService).update(id, cityUpdateDTO);
     }
 }

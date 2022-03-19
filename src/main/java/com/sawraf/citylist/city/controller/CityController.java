@@ -1,7 +1,10 @@
 package com.sawraf.citylist.city.controller;
 
-import com.sawraf.citylist.city.entity.City;
+import com.sawraf.citylist.city.dto.CityDTO;
+import com.sawraf.citylist.city.dto.CityUpdateDTO;
 import com.sawraf.citylist.city.service.CityService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,17 +23,17 @@ public class CityController {
     }
 
     @GetMapping
-    public List<City> getAll() {
-        return cityService.getAll();
+    public Page<CityDTO> getAll(Pageable pageable) {
+        return cityService.getAll(pageable);
     }
 
     @GetMapping(value = "/{prefix}")
-    public List<City> getCityByNameStartingWith(@PathVariable String prefix) {
+    public List<CityDTO> getCityByNameStartingWith(@PathVariable String prefix) {
         return cityService.findByNameStartingWith(prefix);
     }
 
     @PutMapping(value = "/{id}")
-    public City updateCity(@PathVariable Long id, @RequestBody City newCity) {
+    public CityDTO updateCity(@PathVariable Long id, @RequestBody CityUpdateDTO newCity) {
         return cityService.update(id, newCity);
     }
 }
