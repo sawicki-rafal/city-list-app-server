@@ -1,14 +1,20 @@
 package com.sawraf.citylist.city.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 /**
  * Simple JavaBean domain transfer object representing a City.
  */
 public class CityDTO {
 
+    @NotNull(message = "Id is required")
     private Long id;
 
+    @NotBlank(message = "Name is required")
     private String name;
 
+    @NotBlank(message = "Photo url is required")
     private String photoUrl;
 
     public String getName() {
@@ -33,5 +39,10 @@ public class CityDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "CityDTO{id=" + id + ", name=" + name + ", photoUrl=" + photoUrl + "}";
     }
 }

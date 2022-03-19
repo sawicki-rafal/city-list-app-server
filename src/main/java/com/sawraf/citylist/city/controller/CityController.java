@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -28,12 +30,12 @@ public class CityController {
     }
 
     @GetMapping(value = "/{prefix}")
-    public List<CityDTO> getCityByNameStartingWith(@PathVariable String prefix) {
+    public List<CityDTO> getCityByNameStartingWith(@NotNull @PathVariable String prefix) {
         return cityService.findByNameStartingWith(prefix);
     }
 
     @PutMapping(value = "/{id}")
-    public CityDTO updateCity(@PathVariable Long id, @RequestBody CityUpdateDTO newCity) {
+    public CityDTO updateCity(@PathVariable Long id, @Valid @RequestBody CityUpdateDTO newCity) {
         return cityService.update(id, newCity);
     }
 }

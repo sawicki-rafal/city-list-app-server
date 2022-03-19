@@ -40,4 +40,9 @@ public class City {
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
+
+    @Override
+    public String toString() {
+        return "City{id=" + id + ", name=" + name + ", photoUrl=" + photoUrl + "}";
+    }
 }
