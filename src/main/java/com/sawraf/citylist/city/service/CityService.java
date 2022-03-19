@@ -22,7 +22,11 @@ public class CityService {
         return cityRepository.findAll();
     }
 
-    public List<City> findByNameStartingWith(String prefix) {
-       return cityRepository.findByNameStartingWith(prefix);
+    public List<City> findByNameStartingWith(final String prefix) {
+        return cityRepository.findByNameStartingWith(prefix);
+    }
+
+    public City update(Long id, City newCity) {
+
     }
 }

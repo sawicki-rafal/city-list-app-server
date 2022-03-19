@@ -14,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -68,5 +69,23 @@ class CityServiceTest {
         final List<City> returnedCities = cityService.getAll();
         assertThat(returnedCities).isEmpty();
         verify(cityRepository).findAll();
+    }
+
+    @Test
+    void findByNameStartingWithShouldReturnNoCity() {
+        final String prefixToBeSearched = "Lon";
+//
+//        city_1.setName("Wroclaw");
+//        city_1.setName("Krakow");
+//        city_1.setName("Lisbon");
+//        final List<City> cities = new LinkedList<>();
+//        cities.add(city_1);
+//        cities.add(city_2);
+//        cities.add(city_3);
+//
+        when(cityRepository.findByNameStartingWith(anyString())).thenReturn(Collections.emptyList());
+        final List<City> returnedCities = cityService.findByNameStartingWith(prefixToBeSearched);
+        assertThat(returnedCities).isEmpty();
+        verify(cityRepository).findByNameStartingWith(prefixToBeSearched);
     }
 }
