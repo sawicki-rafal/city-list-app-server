@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import static com.sawraf.citylist.exception.message.MessageCode.ERROR_UNKNOWN;
 import static com.sawraf.citylist.exception.message.MessageCode.ERROR_VALIDATION;
 
 @RestControllerAdvice
@@ -60,12 +59,5 @@ public class ApiRequestExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(errorResponse);
     }
 
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    protected ResponseEntity<ErrorResponse> handleAllUncaughtException(Exception exception) {
-        final String message = messageResolver.getMessage(ERROR_UNKNOWN);
-        final ErrorResponse errorResponse = buildErrorResponse(exception, message);
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
-    }
 
 }

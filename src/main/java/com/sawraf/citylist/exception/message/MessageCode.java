@@ -5,8 +5,7 @@ package com.sawraf.citylist.exception.message;
  */
 public enum MessageCode {
     ERROR_ENTITY_NOT_FOUND("citylistapp.error.entity.notfound"),
-    ERROR_VALIDATION("citylistapp.error.validation"),
-    ERROR_UNKNOWN("citylistapp.error.unknown");
+    ERROR_VALIDATION("citylistapp.error.validation");
 
     private final String key;
 

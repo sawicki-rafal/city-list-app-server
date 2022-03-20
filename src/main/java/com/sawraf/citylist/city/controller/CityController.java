@@ -3,6 +3,7 @@ package com.sawraf.citylist.city.controller;
 import com.sawraf.citylist.city.dto.CityDTO;
 import com.sawraf.citylist.city.dto.CityUpdateDTO;
 import com.sawraf.citylist.city.service.CityService;
+import com.sawraf.citylist.security.annotations.EditPermission;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +36,7 @@ public class CityController {
     }
 
     @PutMapping(value = "/{id}")
+    @EditPermission
     public CityDTO updateCity(@PathVariable Long id, @Valid @RequestBody CityUpdateDTO newCity) {
         return cityService.update(id, newCity);
     }
