@@ -5,6 +5,7 @@ import com.sawraf.citylist.city.dto.CityUpdateDTO;
 import com.sawraf.citylist.city.entity.City;
 import com.sawraf.citylist.city.mapper.CityMapper;
 import com.sawraf.citylist.city.repository.CityRepository;
+import com.sawraf.citylist.exception.ApplicationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.sawraf.citylist.exception.message.MessageCode.ERROR_ENTITY_NOT_FOUND;
 
 /**
  * Service for requesting {@link com.sawraf.citylist.city.entity.City}
@@ -40,9 +43,13 @@ public class CityService {
 
     public CityDTO update(Long id, CityUpdateDTO newCity) {
         final Optional<City> oldCity = cityRepository.findById(id);
-        final City city = oldCity.get();
-        city.setName(newCity.getName());
-        city.setPhotoUrl(newCity.getPhotoUrl());
-        return cityMapper.mapToDto(cityRepository.save(city));
+        if (oldCity.isPresent()) {
+            final City city = oldCity.get();
+            city.setName(newCity.getName());
+            city.setPhotoUrl(newCity.getPhotoUrl());
+            return cityMapper.mapToDto(cityRepository.save(city));
+        } else {
+            throw new ApplicationException(ERROR_ENTITY_NOT_FOUND, City.class.getName(), id);
+        }
     }
 }

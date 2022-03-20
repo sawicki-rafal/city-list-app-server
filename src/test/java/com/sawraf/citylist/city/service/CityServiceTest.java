@@ -5,6 +5,8 @@ import com.sawraf.citylist.city.dto.CityUpdateDTO;
 import com.sawraf.citylist.city.entity.City;
 import com.sawraf.citylist.city.mapper.CityMapper;
 import com.sawraf.citylist.city.repository.CityRepository;
+import com.sawraf.citylist.exception.ApplicationException;
+import com.sawraf.citylist.exception.message.MessageCode;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,7 +27,9 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
+import static com.sawraf.citylist.exception.message.MessageCode.ERROR_ENTITY_NOT_FOUND;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 /**
@@ -153,5 +157,24 @@ class CityServiceTest {
         assertThat(updatedCity.getId()).isEqualTo(cityId);
         assertThat(updatedCity.getName()).isEqualTo(cityUpdateDTO.getName());
         assertThat(updatedCity.getPhotoUrl()).isEqualTo(cityUpdateDTO.getPhotoUrl());
+    }
+
+    @Test
+    public void updateWithWrongIdShouldThrowError() {
+        final Long cityId = 123456789L;
+        final CityUpdateDTO cityUpdateDTO = new CityUpdateDTO();
+
+        when(cityRepository.findById(cityId)).thenReturn(Optional.empty());
+        final ApplicationException exception = assertThrows(ApplicationException.class, () -> {
+            cityService.update(cityId, cityUpdateDTO);
+        });
+
+
+        final List<Object> messageArgs = exception.getMessageArgs();
+        final MessageCode messageCode = exception.getMessageCode();
+
+        assertThat(messageArgs).contains(cityId);
+        assertThat(messageCode).isEqualTo(ERROR_ENTITY_NOT_FOUND);
+
     }
 }
