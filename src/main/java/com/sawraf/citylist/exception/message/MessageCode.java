@@ -1,5 +1,8 @@
-package com.sawraf.citylist.exception;
+package com.sawraf.citylist.exception.message;
 
+/**
+ * Message codes used in response messages for Exceptions
+ */
 public enum MessageCode {
     ERROR_ENTITY_NOT_FOUND("citylistapp.error.entity.notfound"),
     ERROR_VALIDATION("citylistapp.error.validation"),
