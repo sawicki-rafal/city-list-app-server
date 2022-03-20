@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "citylistapp.error.print.stacktrace",
+      "type": "java.lang.String",
+      "description": "Allows to send stacktrace of Error in ErrorResponse; default false."
+    }
+  ]
+}

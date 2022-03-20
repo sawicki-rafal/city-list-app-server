@@ -1,5 +1,7 @@
 package com.sawraf.citylist.exception;
 
+import com.sawraf.citylist.exception.message.MessageCode;
+
 import java.util.ArrayList;
 import java.util.List;
 
