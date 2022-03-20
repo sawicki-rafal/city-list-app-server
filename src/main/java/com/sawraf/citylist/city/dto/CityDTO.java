@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
- * Simple JavaBean domain transfer object representing a City.
+ * Simple Java domain transfer object representing a City.
  */
 public class CityDTO {
 

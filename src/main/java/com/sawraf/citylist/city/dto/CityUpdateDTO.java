@@ -3,7 +3,7 @@ package com.sawraf.citylist.city.dto;
 import javax.validation.constraints.NotBlank;
 
 /**
- * Simple JavaBean domain transfer object for UPDATE representing a City.
+ * Simple Java domain transfer object for UPDATE representing a City.
  */
 public class CityUpdateDTO {
 
