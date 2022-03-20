@@ -1,29 +1,23 @@
 package com.sawraf.citylist.city.entity;
 
-import javax.persistence.*;
+import com.sawraf.citylist.model.AbstractEntity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
 
 /**
  * Simple JavaBean domain object representing a City.
  */
 @Entity
-public class City {
+public class City extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
+    @NotBlank(message = "Name is required")
     private String name;
 
+    @NotBlank(message = "Photo url is required")
     @Column(name = "photo")
     private String photoUrl;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -43,6 +37,6 @@ public class City {
 
     @Override
     public String toString() {
-        return "City{id=" + id + ", name=" + name + ", photoUrl=" + photoUrl + "}";
+        return "City{" + super.toString() + ", name=" + name + ", photoUrl=" + photoUrl + "}";
     }
 }
