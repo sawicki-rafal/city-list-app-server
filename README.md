@@ -30,7 +30,7 @@ Authorization is done using **basic authentication**.
 
 ## REST API
 
-Server on default runs on **http://localhost:8080/**. Therefore, API is available on **http://localhost:8080/api**.
+Server on default runs on **http://localhost:8081/**. Therefore, API is available on **http://localhost:8081/api**.
 Available endpoints:
 
 * **/cities**
@@ -40,7 +40,7 @@ Available endpoints:
         * __page__ - the offset to be taken according to the underlying __page__ and __size__.
         * __size__ - the number of items to be returned.
     * example request:
-        * **http://localhost:8080/api/cities?page=0&size=2**
+        * **http://localhost:8081/api/cities?page=0&size=2**
     * example response:
 
 ```javascript
@@ -84,6 +84,13 @@ Available endpoints:
         "empty": false
 }
 ```
+* **/cities/{name}**
+    * description: Get list of cities that starts with prefix __name__ in a pagable format..
+    * method: **GET**
+    * example request:
+        * **http://localhost:8081/api/cities/Lond**
+    * response: see **GET** **/cities** 
+
 
 * **/cities/{id}**
     * description: Edit city.
@@ -107,26 +114,4 @@ Available endpoints:
         "name": "London",
         "photoUrl": "https://new.url.com"
 }
-```
-
-* **/cities/{name}**
-    * description: Get list of cities that starts with prefix __name__.
-    * method: **GET**
-    * example request:
-        * **http://localhost:8080/api/cities/Lond**
-    * example response:
-
-```javascript
-[
-    {
-        "id": 32,
-        "name": "London",
-        "photoUrl": "https://new.url.com"
-    },
-    {
-        "id": 927,
-        "name": "Londrina",
-        "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Lago_Igap%C3%B3_Londrina.jpg/500px-Lago_Igap%C3%B3_Londrina.jpg"
-    }
-]
 ```
