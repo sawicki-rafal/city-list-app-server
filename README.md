@@ -45,9 +45,7 @@ Available endpoints:
 
 ```javascript
 {
-    "content"
-:
-    [
+    "content": [
         {
             "id": 1,
             "name": "Tokyo",
@@ -59,78 +57,31 @@ Available endpoints:
             "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Jakarta_Pictures-1.jpg/327px-Jakarta_Pictures-1.jpg"
         }
     ],
-        "pageable"
-:
-    {
-        "sort"
-    :
-        {
-            "empty"
-        :
-            true,
-                "sorted"
-        :
-            false,
-                "unsorted"
-        :
-            true
-        }
-    ,
-        "offset"
-    :
-        0,
-            "pageSize"
-    :
-        2,
-            "pageNumber"
-    :
-        0,
-            "unpaged"
-    :
-        false,
-            "paged"
-    :
-        true
-    }
-,
-    "last"
-:
-    false,
-        "totalElements"
-:
-    1000,
-        "totalPages"
-:
-    500,
-        "size"
-:
-    2,
-        "number"
-:
-    0,
-        "sort"
-:
-    {
-        "empty"
-    :
-        true,
-            "sorted"
-    :
-        false,
-            "unsorted"
-    :
-        true
-    }
-,
-    "first"
-:
-    true,
-        "numberOfElements"
-:
-    2,
-        "empty"
-:
-    false
+        "pageable": {
+        "sort": {
+            "empty": true,
+                "sorted": false,
+                "unsorted": true
+        },
+        "offset": 0,
+            "pageSize": 2,
+            "pageNumber": 0,
+            "unpaged": false,
+            "paged": true
+    },
+    "last": false,
+        "totalElements": 1000,
+        "totalPages": 500,
+        "size": 2,
+        "number": 0,
+        "sort": {
+        "empty": true,
+            "sorted": false,
+            "unsorted": true
+    },
+    "first": true,
+        "numberOfElements": 2,
+        "empty": false
 }
 ```
 
@@ -142,12 +93,8 @@ Available endpoints:
 
 ```javascript
 {
-    "name"
-:
-    "put new name here",
-        "photoUrl"
-:
-    "put new photo url here"
+    "name": "put new name here", 
+    "photoUrl": "put new photo url here"
 }
 ```
 
@@ -156,15 +103,9 @@ Available endpoints:
 
 ```javascript
 {
-    "id"
-:
-    32,
-        "name"
-:
-    "London",
-        "photoUrl"
-:
-    "https://new.url.com"
+    "id": 32,
+        "name": "London",
+        "photoUrl": "https://new.url.com"
 }
 ```
 
