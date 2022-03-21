@@ -37,8 +37,9 @@ public class CityService {
         return cities.map(cityMapper::mapToDto);
     }
 
-    public List<CityDTO> findByNameStartingWith(final String prefix) {
-        return cityMapper.mapToDto(cityRepository.findByNameStartingWith(prefix));
+    public Page<CityDTO> findByNameStartingWith(final String prefix,Pageable paging) {
+        final Page<City> cities = cityRepository.findByNameStartingWith(prefix,paging);
+        return cities.map(cityMapper::mapToDto);
     }
 
     public CityDTO update(Long id, CityUpdateDTO newCity) {

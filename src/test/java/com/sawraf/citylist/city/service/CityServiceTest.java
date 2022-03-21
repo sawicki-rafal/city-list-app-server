@@ -127,9 +127,20 @@ class CityServiceTest {
     void findByNameStartingWithShouldReturnRespectedCollection(final List<City> inputCities,
                                                                final List<CityDTO> outputCities) {
         final String prefixToBeSearched = "LON";
-        when(cityRepository.findByNameStartingWith(prefixToBeSearched)).thenReturn(inputCities);
-        when(cityMapper.mapToDto(inputCities)).thenReturn(outputCities);
-        final List<CityDTO> returnedCityDTOList = cityService.findByNameStartingWith(prefixToBeSearched);
+        final int pageSize = inputCities.size() > 0 ? inputCities.size() : 1;
+        final PageRequest pageRequest = PageRequest.of(0, pageSize);
+        when(cityRepository.findByNameStartingWith(prefixToBeSearched, pageRequest))
+                .thenReturn(new PageImpl<>(inputCities));
+
+        final AtomicInteger counter = new AtomicInteger(0);
+        inputCities.forEach(inputCity -> {
+            int currentCityCounter = counter.incrementAndGet() - 1;
+            when(cityMapper.mapToDto(inputCity)).thenReturn(outputCities.get(currentCityCounter));
+
+        });
+
+        final Page<CityDTO> pagedResult = cityService.findByNameStartingWith(prefixToBeSearched, pageRequest);
+        final List<CityDTO> returnedCityDTOList = pagedResult.getContent();
         assertThat(returnedCityDTOList).containsExactlyElementsOf(outputCities);
     }
 

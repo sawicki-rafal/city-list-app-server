@@ -31,8 +31,8 @@ public class CityController {
     }
 
     @GetMapping(value = "/{prefix}")
-    public List<CityDTO> getCityByNameStartingWith(@NotNull @PathVariable String prefix) {
-        return cityService.findByNameStartingWith(prefix);
+    public Page<CityDTO> getCitiesByNameStartingWith(@NotNull @PathVariable String prefix, Pageable paging) {
+        return cityService.findByNameStartingWith(prefix, paging);
     }
 
     @PutMapping(value = "/{id}")

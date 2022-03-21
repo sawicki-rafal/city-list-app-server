@@ -33,9 +33,10 @@ class CityControllerTest {
 
     @Test
     void testDelegateGetCityByNameStartingWith() {
+        final PageRequest pageRequest = PageRequest.of(0, 8);
         final String prefixToBeSearched = "TEST_PREFIX";
-        cityController.getCityByNameStartingWith(prefixToBeSearched);
-        verify(cityService).findByNameStartingWith(prefixToBeSearched);
+        cityController.getCitiesByNameStartingWith(prefixToBeSearched,pageRequest);
+        verify(cityService).findByNameStartingWith(prefixToBeSearched,pageRequest);
     }
 
     @Test
