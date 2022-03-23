@@ -16,9 +16,6 @@ import java.util.Optional;
 
 import static com.sawraf.citylist.exception.message.MessageCode.ERROR_ENTITY_NOT_FOUND;
 
-/**
- * Service for requesting {@link com.sawraf.citylist.city.entity.City}
- */
 @Service
 @Transactional
 public class CityService {

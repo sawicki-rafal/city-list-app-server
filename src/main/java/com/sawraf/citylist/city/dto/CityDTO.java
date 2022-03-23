@@ -3,9 +3,6 @@ package com.sawraf.citylist.city.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-/**
- * Simple Java domain transfer object representing a City.
- */
 public class CityDTO {
 
     @NotNull(message = "Id is required")

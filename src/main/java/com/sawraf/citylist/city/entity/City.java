@@ -6,9 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 
-/**
- * Simple JavaBean domain object representing a City.
- */
 @Entity
 public class City extends AbstractEntity {
 

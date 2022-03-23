@@ -12,9 +12,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-/**
- * Service for requesting {@link com.sawraf.citylist.city.entity.City}
- */
 @RestController
 @RequestMapping("/cities")
 public class CityController {

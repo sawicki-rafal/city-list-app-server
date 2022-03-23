@@ -2,9 +2,6 @@ package com.sawraf.citylist.city.dto;
 
 import javax.validation.constraints.NotBlank;
 
-/**
- * Simple Java domain transfer object for UPDATE representing a City.
- */
 public class CityUpdateDTO {
 
     @NotBlank(message = "Name is required")

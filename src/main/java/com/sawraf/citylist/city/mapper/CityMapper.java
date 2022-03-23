@@ -8,9 +8,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Maps City to CityDTO
- */
 @Component
 public class CityMapper {
 
