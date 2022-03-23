@@ -30,7 +30,7 @@ public class ApiRequestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({ApplicationException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    protected ResponseEntity<ErrorResponse> handleEntityNotFoundException(ApplicationException exception) {
+    protected ResponseEntity<ErrorResponse> handleApplicationException(ApplicationException exception) {
         final String message = messageResolver.getMessage(exception);
         final ErrorResponse errorResponse = buildErrorResponse(exception, message);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
